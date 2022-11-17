@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import { Spin, Typography } from "antd";
 import { Contract } from "web3-eth-contract";
 import Members from "./pages/Members";
+import Member from "./pages/Member";
 
 function App() {
   const [appState, setAppState] = useState({ loading: false, error: "" });
@@ -55,6 +56,7 @@ function App() {
       <Routes>
         <Route element={<Home />} path={""} />
         <Route element={<Members />} path={"/members"} />
+        <Route element={<Member />} path={"/member/:id"} />
       </Routes>
     </div>
   );

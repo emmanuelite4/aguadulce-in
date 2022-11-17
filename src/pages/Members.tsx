@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 import { getMembers } from "../libs/contract";
-import { List, Typography } from "antd";
+import { List } from "antd";
+import { Link } from "react-router-dom";
 
 export default function Members() {
-  const [members, setMemebers] = useState<string[]>([]);
+  const [members, setMembers] = useState<string[]>([]);
 
   useEffect(() => {
     getMembers()
       .then((res) => {
-        console.log(res);
-        setMemebers(res);
+        setMembers(res);
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   }, []);
   return (
@@ -21,7 +21,7 @@ export default function Members() {
         dataSource={members}
         renderItem={(item) => (
           <List.Item>
-            <Typography.Text>{item}</Typography.Text>
+            <Link to={"/member/" + item}>{item}</Link>
           </List.Item>
         )}
       />

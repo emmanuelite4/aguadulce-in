@@ -55,3 +55,16 @@ export const getMembers = async () => {
 
   return members.filter((item: string) => item !== address);
 };
+
+export const getMemberRoles = async (address: string) => {
+  const contract = getContract();
+  return await contract.methods.userRole(address).call();
+};
+
+export const changeRoleStatus = async (address: string, value: boolean) => {
+  const contract = getContract();
+  const accountAddress = await loadAccount();
+  await contract.methods
+    .changeRoleStatus(address, value)
+    .send({ from: accountAddress });
+};
