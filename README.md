@@ -11,6 +11,8 @@ The following package should be install on the machine
 * truffle@5.6.5
 * Ganache
 
+Configure your ganache to listen to port `7545`
+
 ### Environment variables
 
 Create a **.env** or **.env.local** file and add the following environment variable to it.
@@ -20,8 +22,13 @@ Create a **.env** or **.env.local** file and add the following environment varia
     - VITE_APP_ACCOUNT_ADDRESS
 ```
 
-Following the following procedure.
-Configure your ganache to listen to port `7545`
+## Following the following procedure.
+
+### To Deploy the smart contract
+
+Open your terminal in the folder ``/contract``
+
+Run ``truffle migrate --reset``
 
 ### To install the node modules app
 
