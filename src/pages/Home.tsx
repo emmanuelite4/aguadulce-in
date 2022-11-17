@@ -1,25 +1,14 @@
 import { Divider, List, Typography } from "antd";
-import { getRoleTypes } from "../libs/contract";
-import { useEffect, useState } from "react";
 import RoleForm from "../components/RoleForm/RoleForm";
+import { useGetRoles } from "../hooks/roles";
 
 export default function Home() {
-  const [roleTypes, setRoleTypes] = useState<string[]>([]);
-
-  const handleFetchRole = () => {
-    getRoleTypes().then((res: string[]) => {
-      setRoleTypes(res);
-    });
-  };
-
-  useEffect(() => {
-    handleFetchRole();
-  }, []);
+  const { roles, handleFetchRole } = useGetRoles();
 
   return (
     <div>
       <List
-        dataSource={roleTypes}
+        dataSource={roles}
         renderItem={(item) => (
           <List.Item>
             <Typography.Text>{item}</Typography.Text>

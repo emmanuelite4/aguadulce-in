@@ -68,3 +68,11 @@ export const changeRoleStatus = async (address: string, value: boolean) => {
     .changeRoleStatus(address, value)
     .send({ from: accountAddress });
 };
+
+export const addRoleToUser = async (address: string, value: number) => {
+  const contract = await getContract();
+  const accountAddress = await loadAccount();
+  await contract.methods
+    .addRole(address, value)
+    .send({ from: accountAddress, to: address, gas: 1000000 });
+};

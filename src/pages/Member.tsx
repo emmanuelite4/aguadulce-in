@@ -1,22 +1,29 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { changeRoleStatus, getMemberRoles } from "../libs/contract";
-import { MemberAccountInfo, MemberRole } from "../components/Member/Member";
+import {
+  AddRoleForm,
+  MemberAccountInfo,
+  MemberRole,
+} from "../components/Member/Member";
 import { Role } from "../types/role";
-import { Typography } from "antd";
+import { useGetRoles } from "../hooks/roles";
+import { Divider } from "antd";
 
 export default function Member() {
   const { id } = useParams();
   const [role, setRole] = useState<Role>();
+  const { roles } = useGetRoles();
 
   const handleRoleChange = async () => {
     if (!id) return;
     changeRoleStatus(id, !role?.isActive).then(() => {
-      handleGetRoleDetails(id);
+      handleGetRoleDetails();
     });
   };
 
-  const handleGetRoleDetails = (id: string) => {
+  const handleGetRoleDetails = () => {
+    if (!id) return;
     getMemberRoles(id)
       .then((res) => {
         const { isActive, roleType } = res;
@@ -28,25 +35,28 @@ export default function Member() {
   };
 
   useEffect(() => {
-    if (id) {
-      handleGetRoleDetails(id);
-    }
+    handleGetRoleDetails();
   }, [id]);
 
   return (
     <div>
       <MemberAccountInfo address={id!} />
       <br />
-      {role?.roleType ? (
-        <MemberRole
-          roleType={role.roleType}
-          isActive={role.isActive}
-          onChangeStatus={handleRoleChange}
+
+      <MemberRole
+        roleType={role?.roleType}
+        isActive={!!role?.isActive}
+        onChangeStatus={handleRoleChange}
+      />
+
+      <Divider />
+
+      {id && (
+        <AddRoleForm
+          roles={roles}
+          onSuccess={handleGetRoleDetails}
+          address={id!}
         />
-      ) : (
-        <Typography.Text type={"danger"}>
-          No role attached to user
-        </Typography.Text>
       )}
     </div>
   );
