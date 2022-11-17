@@ -47,12 +47,16 @@ The app contain three pages
 
 1. Contains the list of roles
 
-![](/Users/emmanuel/Desktop/Screenshot 2022-11-17 at 14.12.22.png)
+<img width="861" alt="Screenshot 2022-11-17 at 14 12 22" src="https://user-images.githubusercontent.com/66213005/202457776-2514401c-8c2b-4685-a579-b0e6328fa743.png">
+
+
 
 2. Contains the list of members
 
-![](/Users/emmanuel/Desktop/Screenshot 2022-11-17 at 14.13.30.png)
+<img width="862" alt="Screenshot 2022-11-17 at 14 13 30" src="https://user-images.githubusercontent.com/66213005/202457808-c495b1f1-2784-46f6-85b4-ed637befab77.png">
+
+
 
 3. Contains details about a member
 
-![](/Users/emmanuel/Desktop/Screenshot 2022-11-17 at 14.13.44.png)
+<img width="865" alt="Screenshot 2022-11-17 at 14 13 44" src="https://user-images.githubusercontent.com/66213005/202457854-7a434dc5-4c29-46b9-aeb9-8cd3383ceb22.png">
