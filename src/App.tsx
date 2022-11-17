@@ -1,34 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import "./App.css";
+import { getContractType, initialContract } from "./libs/contract";
+import { Button, Form, Input, List, Typography } from "antd";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const [roleTypes, setRoleTypes] = useState<string[]>([]);
+
+  useEffect(() => {
+    initialContract().then(async (res) => {
+      const roles = await getContractType();
+      setRoleTypes(roles);
+    });
+  }, []);
 
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Form layout={"inline"}>
+        <Form.Item>
+          <Input placeholder={"Enter role"} name={"role"} />
+        </Form.Item>
+        <Form.Item>
+          <Button htmlType={"submit"}>Submit</Button>
+        </Form.Item>
+      </Form>
+      <List
+        bordered
+        dataSource={roleTypes}
+        renderItem={(item) => (
+          <List.Item>
+            <Typography.Text mark>{item}</Typography.Text>
+          </List.Item>
+        )}
+      />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
