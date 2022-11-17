@@ -12,7 +12,8 @@ declare global {
 
 interface ImportMetaEnv {
   readonly VITE_APP_ACCOUNT_ADDRESS: string;
-  // more env variables...
+  readonly VITE_APP_PROVIDER_URL: string;
+  readonly VITE_APP_CONTRACT_ADDRESS: string;
 }
 
 interface ImportMeta {

@@ -20,6 +20,7 @@ Create a **.env** or **.env.local** file and add the following environment varia
 ```bash
     - VITE_APP_CONTRACT_ADDRESS
     - VITE_APP_ACCOUNT_ADDRESS
+    - VITE_APP_PROVIDER_URL
 ```
 
 ## Following the following procedure.

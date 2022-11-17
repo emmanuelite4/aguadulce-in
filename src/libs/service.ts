@@ -28,7 +28,7 @@ const loadContract = async () => {
 };
 
 const loadWeb3 = async () => {
-  window.web3 = new Web3("ws://localhost:7545");
+  window.web3 = new Web3(import.meta.env.VITE_APP_PROVIDER_URL);
 };
 
 export const getContract = () => window.memberRoleContract;
