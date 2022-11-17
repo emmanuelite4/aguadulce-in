@@ -1,0 +1,17 @@
+.root {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .3);
+}
+
+.root > h3 {
+    margin: 0;
+}
+
+.actions {
+    display: flex;
+    gap: 30px;
+}

@@ -7,6 +7,7 @@ import { Spin, Typography } from "antd";
 import { Contract } from "web3-eth-contract";
 import Members from "./pages/Members";
 import Member from "./pages/Member";
+import Header from "./components/Header/Header";
 
 function App() {
   const [appState, setAppState] = useState({ loading: false, error: "" });
@@ -52,12 +53,15 @@ function App() {
     );
 
   return (
-    <div className="App">
-      <Routes>
-        <Route element={<Home />} path={""} />
-        <Route element={<Members />} path={"/members"} />
-        <Route element={<Member />} path={"/member/:id"} />
-      </Routes>
+    <div>
+      <Header />
+      <div className={"body"}>
+        <Routes>
+          <Route element={<Home />} path={""} />
+          <Route element={<Members />} path={"/members"} />
+          <Route element={<Member />} path={"/member/:id"} />
+        </Routes>
+      </div>
     </div>
   );
 }

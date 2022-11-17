@@ -1,39 +1,24 @@
-import { Button, Form, Input, List, Typography } from "antd";
-import { addRoleType, getRoleTypes } from "../libs/contract";
-import { Link } from "react-router-dom";
+import { Divider, List, Typography } from "antd";
+import { getRoleTypes } from "../libs/contract";
 import { useEffect, useState } from "react";
-
-const { useForm } = Form;
+import RoleForm from "../components/RoleForm/RoleForm";
 
 export default function Home() {
-  const [form] = useForm();
   const [roleTypes, setRoleTypes] = useState<string[]>([]);
 
-  useEffect(() => {
+  const handleFetchRole = () => {
     getRoleTypes().then((res: string[]) => {
       setRoleTypes(res);
     });
+  };
+
+  useEffect(() => {
+    handleFetchRole();
   }, []);
 
   return (
     <div>
-      <Link to={"/members"}>Members</Link>
-      <Form
-        layout={"inline"}
-        form={form}
-        onFinish={() => {
-          addRoleType(form.getFieldValue("role"));
-        }}
-      >
-        <Form.Item name={"role"}>
-          <Input placeholder={"Enter role"} />
-        </Form.Item>
-        <Form.Item>
-          <Button htmlType={"submit"}>Submit</Button>
-        </Form.Item>
-      </Form>
       <List
-        bordered
         dataSource={roleTypes}
         renderItem={(item) => (
           <List.Item>
@@ -41,6 +26,11 @@ export default function Home() {
           </List.Item>
         )}
       />
+      <Divider />
+      <div>
+        <Typography.Title level={5}>Create Role</Typography.Title>
+        <RoleForm onSuccess={handleFetchRole} />
+      </div>
     </div>
   );
 }
