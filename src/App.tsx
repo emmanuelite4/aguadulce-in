@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import { Spin, Typography } from "antd";
 import { Contract } from "web3-eth-contract";
+import Members from "./pages/Members";
 
 function App() {
   const [appState, setAppState] = useState({ loading: false, error: "" });
@@ -13,11 +14,10 @@ function App() {
     setAppState((prev) => ({ ...prev, loading: true }));
     initialContract()
       .then((res) => {
-        console.log(res);
         setContract(res.contract);
         setAppState((prev) => ({ ...prev, loading: false, error: "" }));
       })
-      .catch((err) => {
+      .catch(() => {
         setAppState((prev) => ({
           ...prev,
           loading: false,
@@ -54,6 +54,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route element={<Home />} path={""} />
+        <Route element={<Members />} path={"/members"} />
       </Routes>
     </div>
   );

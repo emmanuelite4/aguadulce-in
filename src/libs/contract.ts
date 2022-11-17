@@ -12,13 +12,14 @@ const loadAccount = async () => {
 };
 
 const loadContract = async () => {
+  let contractAddress = import.meta.env.VITE_APP_CONTRACT_ADDRESS;
+  let accountAddress = import.meta.env.VITE_APP_ACCOUNT_ADDRESS;
   const memberRoleContract = new window.web3.eth.Contract(
     MemberRoleJSON.abi,
-    "0xd7a9907d739aa2feb25AbD92F2B663E30fd883be"
+    contractAddress
   );
 
-  memberRoleContract.defaultAccount =
-    "0x0BBAE7b9D9B03AEd4aD538E527a936a8F195639a";
+  memberRoleContract.defaultAccount = accountAddress;
 
   window.memberRoleContract = memberRoleContract;
   return { contract: memberRoleContract };
@@ -46,4 +47,11 @@ export const addRoleType = async (value: string) => {
   const contract = getContract();
   const accountAddress = await loadAccount();
   await contract.methods.addRoleType(value).send({ from: accountAddress });
+};
+
+export const getMembers = async () => {
+  const members = await window.web3.eth.getAccounts();
+  let address = import.meta.env.VITE_APP_ACCOUNT_ADDRESS;
+
+  return members.filter((item: string) => item !== address);
 };

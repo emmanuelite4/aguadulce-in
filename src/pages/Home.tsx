@@ -1,4 +1,4 @@
-import { Button, Form, Input, List } from "antd";
+import { Button, Form, Input, List, Typography } from "antd";
 import { addRoleType, getRoleTypes } from "../libs/contract";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -17,6 +17,7 @@ export default function Home() {
 
   return (
     <div>
+      <Link to={"/members"}>Members</Link>
       <Form
         layout={"inline"}
         form={form}
@@ -36,7 +37,7 @@ export default function Home() {
         dataSource={roleTypes}
         renderItem={(item) => (
           <List.Item>
-            <Link to={"role/" + item}>{item}</Link>
+            <Typography.Text>{item}</Typography.Text>
           </List.Item>
         )}
       />

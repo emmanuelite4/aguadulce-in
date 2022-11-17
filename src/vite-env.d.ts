@@ -9,3 +9,12 @@ declare global {
     memberRoleContract: Contract;
   }
 }
+
+interface ImportMetaEnv {
+  readonly VITE_APP_ACCOUNT_ADDRESS: string;
+  // more env variables...
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
+}
