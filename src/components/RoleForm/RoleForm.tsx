@@ -1,5 +1,5 @@
 import { Button, Form, Input } from "antd";
-import { addRoleType } from "../../libs/contract";
+import { addRoleType } from "../../libs/contracts";
 
 const { useForm } = Form;
 

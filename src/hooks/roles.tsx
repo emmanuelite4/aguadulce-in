@@ -1,4 +1,4 @@
-import { getRoleTypes } from "../libs/contract";
+import { getRoleTypes } from "../libs/contracts";
 import { useEffect, useState } from "react";
 
 export const useGetRoles = () => {

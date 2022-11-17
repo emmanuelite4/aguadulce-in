@@ -1,34 +1,16 @@
-import { useEffect, useState } from "react";
 import "./App.css";
-import { initialContract } from "./libs/contract";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import { Spin, Typography } from "antd";
-import { Contract } from "web3-eth-contract";
 import Members from "./pages/Members";
 import Member from "./pages/Member";
 import Header from "./components/Header/Header";
+import { useApp } from "./hooks/app";
 
 function App() {
-  const [appState, setAppState] = useState({ loading: false, error: "" });
-  const [contract, setContract] = useState<Contract | null>(null);
-  useEffect(() => {
-    setAppState((prev) => ({ ...prev, loading: true }));
-    initialContract()
-      .then((res) => {
-        setContract(res.contract);
-        setAppState((prev) => ({ ...prev, loading: false, error: "" }));
-      })
-      .catch(() => {
-        setAppState((prev) => ({
-          ...prev,
-          loading: false,
-          error: "Can't connect to contract",
-        }));
-      });
-  }, []);
+  const { loading, error, contract } = useApp();
 
-  if (appState.error) {
+  if (error) {
     return (
       <div className={"App"}>
         <Typography.Title level={4}>
@@ -45,7 +27,7 @@ function App() {
       </div>
     );
   }
-  if (appState.loading)
+  if (loading)
     return (
       <div className={"App"}>
         <Typography.Title level={4}>Setting up your app</Typography.Title>

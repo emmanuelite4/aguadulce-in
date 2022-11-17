@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { changeRoleStatus, getMemberRoles } from "../libs/contract";
+import { changeRoleStatus, getMemberRoles } from "../libs/contracts";
 import {
   AddRoleForm,
   MemberAccountInfo,

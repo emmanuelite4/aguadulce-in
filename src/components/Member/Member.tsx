@@ -1,6 +1,6 @@
 import { Button, Form, Select, Typography } from "antd";
 import styles from "./Member.module.css";
-import { addRoleToUser } from "../../libs/contract";
+import { addRoleToUser } from "../../libs/contracts";
 
 const { Text, Title } = Typography;
 const { useForm } = Form;

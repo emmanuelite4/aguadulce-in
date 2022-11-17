@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getMembers } from "../libs/contract";
+import { getMembers } from "../libs/contracts";
 import { List } from "antd";
 import { Link } from "react-router-dom";
 
