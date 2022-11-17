@@ -3,11 +3,8 @@ import Web3 from "web3";
 
 export const initialContract = async () => {
   await loadWeb3();
-  const address = await loadAccount();
   const { contract } = await loadContract();
-  // const roles = await loadRoles(contract);
-
-  return { address, contract };
+  return { contract };
 };
 
 const loadAccount = async () => {
@@ -31,8 +28,10 @@ const loadWeb3 = async () => {
   window.web3 = new Web3("ws://localhost:7545");
 };
 
-export const getContractType = async () => {
-  const contract = window.memberRoleContract;
+const getContract = () => window.memberRoleContract;
+
+export const getRoleTypes = async () => {
+  const contract = getContract();
   const roleCount = await contract.methods.roleTypesCount().call();
 
   let roles = [];
@@ -41,4 +40,10 @@ export const getContractType = async () => {
     roles.push(role);
   }
   return roles;
+};
+
+export const addRoleType = async (value: string) => {
+  const contract = getContract();
+  const accountAddress = await loadAccount();
+  await contract.methods.addRoleType(value).send({ from: accountAddress });
 };
