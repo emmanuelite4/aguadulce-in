@@ -7,8 +7,12 @@ export default function Header() {
     <div className={styles.root}>
       <Typography.Title level={3}>Role Manager</Typography.Title>
       <div className={styles.actions}>
-        <Link to={"/members"}>Members</Link>
-        <Link to={"/"}>Roles</Link>
+        <Link to={"/members"} data-testid={"member"}>
+          Members
+        </Link>
+        <Link to={"/"} data-testid={"roles"}>
+          Roles
+        </Link>
       </div>
     </div>
   );
